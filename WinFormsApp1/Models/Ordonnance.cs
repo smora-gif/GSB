@@ -9,6 +9,7 @@ namespace WinFormsApp1.Modele
     internal class Ordonnance
     {
         private DateTime Date {  get; set; }
+        private string NumOrdo { get; set; }
         List <Medecin> Medecins { get; set; }
         List <Patient> Patients { get; set; }
 
