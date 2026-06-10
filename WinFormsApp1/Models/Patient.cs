@@ -17,7 +17,7 @@ namespace WinFormsApp1.Modele
         public bool sex { get; set; }
         public List<Allergie> Allergies { get; set; }
 
-        public Patient(int poids, int taille, string Patho, string NumSecu, bool Sex, string prenom, string nom, DateTime DateNaissance) :base (nom, prenom, DateNaissance)
+        public Patient(int poids, int taille, string Patho, string NumSecu, bool Sex, string nom, string prenom, DateTime DateNaissance) :base (nom, prenom, DateNaissance)
             { 
             this.poids = poids;
             this.taille = taille;

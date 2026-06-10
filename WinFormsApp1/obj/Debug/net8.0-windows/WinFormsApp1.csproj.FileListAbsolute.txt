@@ -55,3 +55,4 @@ C:\Project Ordonnances\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj
 C:\Project Ordonnances\WinFormsApp1\obj\Debug\net8.0-windows\WinForms.E4050A35.Up2Date
 C:\Project Ordonnances\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Views.PatientListForm.resources
 C:\Project Ordonnances\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Views.PatientDetailForm.resources
+C:\Project Ordonnances\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Properties.Resources.resources

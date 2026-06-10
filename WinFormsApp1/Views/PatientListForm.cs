@@ -9,12 +9,16 @@ namespace WinFormsApp1.Views
 {
     public partial class PatientListForm : Form
     {
-        private readonly PatientController _controller;
 
-        public PatientListForm()
+        private readonly PatientController _controller;
+        private readonly Page_Medecin _pageMedecinActive;
+        public Patient PatientSelectionne { get; private set; }
+
+        public PatientListForm(Page_Medecin pageMedecinActive)
         {
             InitializeComponent();
             _controller = new PatientController();
+            _pageMedecinActive = pageMedecinActive;
         }
 
         // Événement au chargement du formulaire
@@ -81,54 +85,71 @@ namespace WinFormsApp1.Views
 
         // Gère les en-têtes et la visibilité des colonnes
         private void PersonnaliserColonnes()
-        {
-            if (dgvPatients.Columns.Count == 0) return;
-
-            // Configuration de la colonne ID
-            if (dgvPatients.Columns.Contains("Id"))
             {
-                dgvPatients.Columns["Id"].HeaderText = "N°";
-                dgvPatients.Columns["Id"].Width = 50;
+                if (dgvPatients.Columns.Count == 0) return;
+
+                // Configuration des en-têtes (Textes affichés)
+                if (dgvPatients.Columns.Contains("Id")) dgvPatients.Columns["Id"].HeaderText = "N°";
+                if (dgvPatients.Columns.Contains("NumeroSecu")) dgvPatients.Columns["NumeroSecu"].HeaderText = "N° Sécurité sociale";
+                if (dgvPatients.Columns.Contains("Nom")) dgvPatients.Columns["Nom"].HeaderText = "Nom";
+                if (dgvPatients.Columns.Contains("Prenom")) dgvPatients.Columns["Prenom"].HeaderText = "Prénom";
+
+                // FORCE LE LIEN AVEC LES PROPRIÉTÉS DE LA CLASSE PATIENT
+                // Si la colonne s'appelle "Nom", elle doit afficher la propriété "Nom" de ton code C#
+                if (dgvPatients.Columns.Contains("Nom")) dgvPatients.Columns["Nom"].DataPropertyName = "Nom";
+                if (dgvPatients.Columns.Contains("Prenom")) dgvPatients.Columns["Prenom"].DataPropertyName = "Prenom";
+
+                // Ordre d'affichage visuel
+                if (dgvPatients.Columns.Contains("Id")) dgvPatients.Columns["Id"].DisplayIndex = 0;
+                if (dgvPatients.Columns.Contains("NumeroSecu")) dgvPatients.Columns["NumeroSecu"].DisplayIndex = 1;
+                if (dgvPatients.Columns.Contains("Nom")) dgvPatients.Columns["Nom"].DisplayIndex = 2;
+                if (dgvPatients.Columns.Contains("Prenom")) dgvPatients.Columns["Prenom"].DisplayIndex = 3;
+                if (dgvPatients.Columns.Contains("DateNaissance")) dgvPatients.Columns["DateNaissance"].DisplayIndex = 4;
+
+                // Masquer les colonnes inutiles
+                foreach (var col in new[] { "Patho", "Poids", "Taille", "Sex", "Allergies" })
+                {
+                    if (dgvPatients.Columns.Contains(col))
+                        dgvPatients.Columns[col].Visible = false;
+                }
             }
-
-            if (dgvPatients.Columns.Contains("Nom"))
-                dgvPatients.Columns["Nom"].HeaderText = "Nom";
-
-            if (dgvPatients.Columns.Contains("Prenom"))
-                dgvPatients.Columns["Prenom"].HeaderText = "Prénom";
-
-            if (dgvPatients.Columns.Contains("DateNaissance"))
-            {
-                dgvPatients.Columns["DateNaissance"].HeaderText = "Date de naissance";
-                dgvPatients.Columns["DateNaissance"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            }
-
-            if (dgvPatients.Columns.Contains("NumeroSecu"))
-                dgvPatients.Columns["NumeroSecu"].HeaderText = "N° Sécurité sociale";
-
-            // Masquer les colonnes inutiles de la table
-            foreach (var col in new[] { "Patho", "Poids", "Taille", "Sex", "Allergies" })
-            {
-                if (dgvPatients.Columns.Contains(col))
-                    dgvPatients.Columns[col].Visible = false;
-            }
-        }
-        private void dgvPatients_CellDoubleClick(object sender,
-                                         DataGridViewCellEventArgs e)
+        private void dgvPatients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ignorer les clics sur l'en-tête de colonne
             if (e.RowIndex < 0) return;
-            // Récupérer l'objet Patient lié à la ligne cliquée.
-            // DataBoundItem contient l'objet de la liste DataSource
-            // qui correspond à cette ligne.
+
+            // Récupérer l'objet Patient lié à la ligne cliquée
             Patient p = (Patient)dgvPatients.Rows[e.RowIndex].DataBoundItem;
-            MessageBox.Show("test listform" + p.Nom);
-            // Ouvrir le formulaire de détail en mode "modal" :
-            // ShowDialog() bloque la fenêtre parente jusqu'à fermeture.
-            PatientDetailForm fiche = new PatientDetailForm(p);
-            fiche.ShowDialog(this);
-            // (optionnel) Si le détail modifie le patient, on rafraîchit :
-            // RafraichirListe();
+
+            // Poser la question au médecin avec des boutons Oui / Non / Annuler
+            DialogResult choix = MessageBox.Show(
+                $"Que voulez-vous faire avec le patient {p.Prenom} {p.Nom} ?\n\n" +
+                "• [ OUI ] : Remplir la page Médecin avec ses informations.\n" +
+                "• [ NON ] : Ouvrir sa fiche (Allergies, Historique...).\n" +
+                "• [ ANNULER ] : Revenir à la liste.",
+                "Choix de l'action",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question
+            );
+
+            if (choix == DialogResult.Yes)
+            {
+                // CAS 1 : On remplit DIRECTEMENT la page médecin qui est affichée à l'écran !
+                if (_pageMedecinActive != null)
+                {
+                    _pageMedecinActive.RemplirChamps(p);
+                }
+
+                this.Close(); // On ferme la liste
+            }
+            else if (choix == DialogResult.No)
+            {
+                // CAS 2 : Ouvrir uniquement la fiche de détails (Allergies)
+                PatientDetailForm fiche = new PatientDetailForm(p);
+                fiche.ShowDialog(this);
+                // Une fois la fiche fermée, le médecin se retrouve à nouveau sur la liste
+            }
+            // Si choix == Cancel, il ne se passe rien (la boîte se ferme et la liste reste ouverte)
         }
 
         private void btnRechercher_Click_1(object sender, EventArgs e)

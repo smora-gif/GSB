@@ -31,32 +31,31 @@
             comboBox1 = new ComboBox();
             label1 = new Label();
             button1 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtNom = new TextBox();
+            txtPrenom = new TextBox();
             label2 = new Label();
             label3 = new Label();
-            textBox3 = new TextBox();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            comboBox2 = new ComboBox();
+            txtPoids = new TextBox();
+            txtTaille = new TextBox();
+            comboBoxSexe = new ComboBox();
             label7 = new Label();
             label8 = new Label();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
+            txtPatho = new TextBox();
+            txtSecu = new TextBox();
             label9 = new Label();
-            button2 = new Button();
-            dataGridView1 = new DataGridView();
             btnValider = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btnModifier = new Button();
+            dateNaissance = new DateTimePicker();
+            btnOrdonnaces = new Button();
             SuspendLayout();
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(661, 68);
+            comboBox1.Location = new Point(667, 55);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 0;
@@ -65,7 +64,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(661, 45);
+            label1.Location = new Point(667, 32);
             label1.Name = "label1";
             label1.Size = new Size(61, 20);
             label1.TabIndex = 1;
@@ -74,7 +73,7 @@
             // button1
             // 
             button1.BackColor = SystemColors.Info;
-            button1.Location = new Point(910, 333);
+            button1.Location = new Point(910, 348);
             button1.Name = "button1";
             button1.Size = new Size(155, 38);
             button1.TabIndex = 2;
@@ -82,24 +81,24 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // textBox1
+            // txtNom
             // 
-            textBox1.Location = new Point(555, 108);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 3;
+            txtNom.Location = new Point(555, 123);
+            txtNom.Name = "txtNom";
+            txtNom.Size = new Size(125, 27);
+            txtNom.TabIndex = 3;
             // 
-            // textBox2
+            // txtPrenom
             // 
-            textBox2.Location = new Point(812, 108);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(186, 27);
-            textBox2.TabIndex = 4;
+            txtPrenom.Location = new Point(812, 123);
+            txtPrenom.Name = "txtPrenom";
+            txtPrenom.Size = new Size(186, 27);
+            txtPrenom.TabIndex = 4;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(555, 76);
+            label2.Location = new Point(555, 91);
             label2.Name = "label2";
             label2.Size = new Size(49, 20);
             label2.TabIndex = 5;
@@ -108,23 +107,16 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(812, 76);
+            label3.Location = new Point(812, 91);
             label3.Name = "label3";
             label3.Size = new Size(67, 20);
             label3.TabIndex = 6;
             label3.Text = "Prenom :";
             // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(555, 185);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(139, 27);
-            textBox3.TabIndex = 7;
-            // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(555, 162);
+            label4.Location = new Point(617, 173);
             label4.Name = "label4";
             label4.Size = new Size(139, 20);
             label4.TabIndex = 8;
@@ -133,7 +125,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(838, 162);
+            label5.Location = new Point(900, 173);
             label5.Name = "label5";
             label5.Size = new Size(50, 20);
             label5.TabIndex = 9;
@@ -142,38 +134,38 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(740, 162);
+            label6.Location = new Point(802, 173);
             label6.Name = "label6";
             label6.Size = new Size(51, 20);
             label6.TabIndex = 10;
             label6.Text = "Poids :";
             // 
-            // textBox4
+            // txtPoids
             // 
-            textBox4.Location = new Point(740, 185);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(61, 27);
-            textBox4.TabIndex = 11;
+            txtPoids.Location = new Point(802, 196);
+            txtPoids.Name = "txtPoids";
+            txtPoids.Size = new Size(61, 27);
+            txtPoids.TabIndex = 11;
             // 
-            // textBox5
+            // txtTaille
             // 
-            textBox5.Location = new Point(838, 185);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(139, 27);
-            textBox5.TabIndex = 12;
+            txtTaille.Location = new Point(900, 196);
+            txtTaille.Name = "txtTaille";
+            txtTaille.Size = new Size(97, 27);
+            txtTaille.TabIndex = 12;
             // 
-            // comboBox2
+            // comboBoxSexe
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(555, 257);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 28);
-            comboBox2.TabIndex = 13;
+            comboBoxSexe.FormattingEnabled = true;
+            comboBoxSexe.Location = new Point(555, 272);
+            comboBoxSexe.Name = "comboBoxSexe";
+            comboBoxSexe.Size = new Size(151, 28);
+            comboBoxSexe.TabIndex = 13;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(553, 234);
+            label7.Location = new Point(553, 249);
             label7.Name = "label7";
             label7.Size = new Size(47, 20);
             label7.TabIndex = 14;
@@ -182,94 +174,105 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(775, 234);
+            label8.Location = new Point(775, 249);
             label8.Name = "label8";
             label8.Size = new Size(93, 20);
             label8.TabIndex = 15;
             label8.Text = "Pathologies :";
             // 
-            // textBox6
+            // txtPatho
             // 
-            textBox6.Location = new Point(775, 258);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(223, 27);
-            textBox6.TabIndex = 16;
+            txtPatho.Location = new Point(775, 273);
+            txtPatho.Name = "txtPatho";
+            txtPatho.Size = new Size(223, 27);
+            txtPatho.TabIndex = 16;
             // 
-            // textBox7
+            // txtSecu
             // 
-            textBox7.Location = new Point(555, 342);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(218, 27);
-            textBox7.TabIndex = 17;
+            txtSecu.Location = new Point(555, 357);
+            txtSecu.Name = "txtSecu";
+            txtSecu.Size = new Size(218, 27);
+            txtSecu.TabIndex = 17;
+            txtSecu.TextChanged += textBox7_TextChanged;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(555, 319);
+            label9.Location = new Point(555, 334);
             label9.Name = "label9";
             label9.Size = new Size(198, 20);
             label9.TabIndex = 18;
             label9.Text = "Numero de Securité sociale :";
             // 
-            // button2
-            // 
-            button2.BackColor = SystemColors.ControlDark;
-            button2.Location = new Point(794, 342);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 19;
-            button2.Text = "Modifier";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(428, 375);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(706, 137);
-            dataGridView1.TabIndex = 20;
-            // 
             // btnValider
             // 
-            btnValider.Location = new Point(1089, 338);
+            btnValider.Location = new Point(553, 404);
             btnValider.Name = "btnValider";
-            btnValider.Size = new Size(120, 29);
+            btnValider.Size = new Size(200, 56);
             btnValider.TabIndex = 21;
             btnValider.Text = "Liste des Patients";
             btnValider.UseVisualStyleBackColor = true;
             btnValider.Click += button3_Click;
+            // 
+            // btnModifier
+            // 
+            btnModifier.BackColor = Color.Plum;
+            btnModifier.ForeColor = SystemColors.ActiveCaptionText;
+            btnModifier.Location = new Point(794, 353);
+            btnModifier.Name = "btnModifier";
+            btnModifier.Size = new Size(94, 29);
+            btnModifier.TabIndex = 22;
+            btnModifier.Text = "Modifier";
+            btnModifier.UseVisualStyleBackColor = false;
+            btnModifier.Click += btnModifier_Click_1;
+            // 
+            // dateNaissance
+            // 
+            dateNaissance.Format = DateTimePickerFormat.Short;
+            dateNaissance.Location = new Point(555, 196);
+            dateNaissance.Name = "dateNaissance";
+            dateNaissance.Size = new Size(235, 27);
+            dateNaissance.TabIndex = 23;
+            // 
+            // btnOrdonnaces
+            // 
+            btnOrdonnaces.Location = new Point(794, 404);
+            btnOrdonnaces.Name = "btnOrdonnaces";
+            btnOrdonnaces.Size = new Size(198, 56);
+            btnOrdonnaces.TabIndex = 24;
+            btnOrdonnaces.Text = "Page Ordonnaces";
+            btnOrdonnaces.UseVisualStyleBackColor = true;
+            btnOrdonnaces.Click += btnOrdonnaces_Click;
             // 
             // Page_Medecin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1481, 520);
+            Controls.Add(btnOrdonnaces);
+            Controls.Add(dateNaissance);
+            Controls.Add(btnModifier);
             Controls.Add(btnValider);
-            Controls.Add(dataGridView1);
-            Controls.Add(button2);
             Controls.Add(label9);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
+            Controls.Add(txtSecu);
+            Controls.Add(txtPatho);
             Controls.Add(label8);
             Controls.Add(label7);
-            Controls.Add(comboBox2);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
+            Controls.Add(comboBoxSexe);
+            Controls.Add(txtTaille);
+            Controls.Add(txtPoids);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(textBox3);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtPrenom);
+            Controls.Add(txtNom);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Name = "Page_Medecin";
             Text = "Page_Medecin";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -279,24 +282,24 @@
         private ComboBox comboBox1;
         private Label label1;
         private Button button1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtNom;
+        private TextBox txtPrenom;
         private Label label2;
         private Label label3;
-        private TextBox textBox3;
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private ComboBox comboBox2;
+        private TextBox txtPoids;
+        private TextBox txtTaille;
+        private ComboBox comboBoxSexe;
         private Label label7;
         private Label label8;
-        private TextBox textBox6;
-        private TextBox textBox7;
+        private TextBox txtPatho;
+        private TextBox txtSecu;
         private Label label9;
-        private Button button2;
-        private DataGridView dataGridView1;
         private Button btnValider;
+        private Button btnModifier;
+        private DateTimePicker dateNaissance;
+        private Button btnOrdonnaces;
     }
 }

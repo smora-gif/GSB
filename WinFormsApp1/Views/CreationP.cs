@@ -20,22 +20,45 @@ namespace WinFormsApp1
 
         private void CreerPatient_Click(object sender, EventArgs e)
         {
-            string Nom = TxtBoxNom.Text;
-            string Prenom = TxtBoxPrenom.Text;
-            DateTime Datedenaissance= DateDeNaissance.Value;
-            float Poids = (float)NumPoids.Value;
-            float Taille = (float)NumTaille.Value;
-            string Sexe = comboBoxSexe.Text;
-            string Pathologies = TxtBoxPatho.Text;
-            string NumeroSecu = TxtBoxNSecu.Text;
-            //MessageBox.Show("Nom :" + " " + Nom + " " + "Prenom :" + " " + Prenom + "Date de naissance: " + " " + "etc" );
+            // 1. On vérifie d'abord que les champs obligatoires ne sont pas vides
+            if (string.IsNullOrWhiteSpace(TxtBoxNom.Text) || string.IsNullOrWhiteSpace(TxtBoxPrenom.Text))
+            {
+                MessageBox.Show("Le nom et le prénom sont obligatoires pour enregistrer un patient.",
+                                "Saisie incomplète", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            Person p1 = new Person(TxtBoxNom.Text, TxtBoxPrenom.Text, DateDeNaissance.Value);
-            MessageBox.Show(p1.Prenom);
+            // 2. Traduction du Sexe en booléen pour ta classe Patient
+            // Si la ComboBox dit "Masculin" ou "Homme", sexeBool sera 'true', sinon 'false'
+            bool sexeBool = (comboBoxSexe.Text == "Masculin" || comboBoxSexe.Text == "Homme");
 
-            Form RetourPageMedecin = new Page_Medecin();
-            RetourPageMedecin.Show();
-            this.Hide();
+            // 3. On crée un véritable objet Patient avec toutes les informations saisies
+            // (On convertit les valeurs des NumericUpDown (decimal) en int)
+            Patient nouveauPatient = new Patient(
+                (int)NumPoids.Value,
+                (int)NumTaille.Value,
+                TxtBoxPatho.Text,
+                TxtBoxNSecu.Text,
+                sexeBool,
+                TxtBoxNom.Text,
+                TxtBoxPrenom.Text,
+                DateDeNaissance.Value
+            );
+
+            // 4. On appelle le contrôleur pour l'envoyer dans la base de données Docker
+            WinFormsApp1.Controlleurs.PatientController controller = new WinFormsApp1.Controlleurs.PatientController();
+            bool estEnregistre = controller.CreerPatient(nouveauPatient);
+
+            // 5. Si la base de données a accepté l'insertion
+            if (estEnregistre)
+            {
+                MessageBox.Show($"Le patient {nouveauPatient.Prenom} {nouveauPatient.Nom} a bien été sauvegardé !",
+                                "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // On ferme ce formulaire de création. 
+                // Le médecin se retrouve automatiquement sur la page d'accueil qui était restée ouverte derrière.
+                this.Close();
+            }
         }
         //        string lastname = this.tesxtbox1.text;
         //string name = this.tesxtbox2.text;
