@@ -28,5 +28,10 @@ namespace WinFormsApp1
 
 
         }
+
+        private void ComBoxMedicament_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

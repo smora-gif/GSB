@@ -56,6 +56,7 @@
             ComBoxMedicament.Name = "ComBoxMedicament";
             ComBoxMedicament.Size = new Size(151, 28);
             ComBoxMedicament.TabIndex = 0;
+            ComBoxMedicament.SelectedIndexChanged += ComBoxMedicament_SelectedIndexChanged;
             // 
             // comboBoxUnitDose
             // 

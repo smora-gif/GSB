@@ -35,6 +35,7 @@
             btnConnection = new Button();
             label3 = new Label();
             linkInscription = new LinkLabel();
+            btnAfficherMdp = new Button();
             SuspendLayout();
             // 
             // txtboxUtilisateur
@@ -47,16 +48,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(592, 74);
+            label1.Location = new Point(602, 74);
             label1.Name = "label1";
-            label1.Size = new Size(83, 20);
+            label1.Size = new Size(107, 20);
             label1.TabIndex = 1;
-            label1.Text = "Utilisateur :";
+            label1.Text = "Numero RPPS :";
             // 
             // txtboxMdp
             // 
             txtboxMdp.Location = new Point(602, 189);
             txtboxMdp.Name = "txtboxMdp";
+            txtboxMdp.PasswordChar = '*';
             txtboxMdp.Size = new Size(242, 27);
             txtboxMdp.TabIndex = 2;
             // 
@@ -103,11 +105,22 @@
             linkInscription.Text = "S'inscrire";
             linkInscription.LinkClicked += linkInscription_LinkClicked;
             // 
+            // btnAfficherMdp
+            // 
+            btnAfficherMdp.Location = new Point(861, 189);
+            btnAfficherMdp.Name = "btnAfficherMdp";
+            btnAfficherMdp.Size = new Size(38, 29);
+            btnAfficherMdp.TabIndex = 8;
+            btnAfficherMdp.Text = "👁";
+            btnAfficherMdp.UseVisualStyleBackColor = true;
+            btnAfficherMdp.Click += btnAfficherMdp_Click;
+            // 
             // Connection
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1469, 508);
+            Controls.Add(btnAfficherMdp);
             Controls.Add(linkInscription);
             Controls.Add(label3);
             Controls.Add(btnConnection);
@@ -117,6 +130,7 @@
             Controls.Add(txtboxUtilisateur);
             Name = "Connection";
             Text = "Form1";
+            Load += Connection_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -130,5 +144,6 @@
         private Button btnConnection;
         private Label label3;
         private LinkLabel linkInscription;
+        private Button btnAfficherMdp;
     }
 }

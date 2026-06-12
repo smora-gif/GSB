@@ -61,5 +61,34 @@ namespace WinFormsApp1
             cinscriptionForm.Show();
             this.Hide();
         }
+
+        private void Connection_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAfficherMdp_Click(object sender, EventArgs e)
+        {
+            // ⚠️ Remplace 'txtPassword' par le vrai nom de ta TextBox de mot de passe !
+
+            // Si le mot de passe est actuellement masqué par une étoile
+            if (txtboxMdp.PasswordChar == '*')
+            {
+                // On enlève le masque (la valeur '\0' signifie aucun caractère de masquage)
+                txtboxMdp.PasswordChar = '\0';
+
+                // Optionnel : On change l'icône du bouton pour montrer qu'on peut refermer l'œil
+                btnAfficherMdp.Text = "🙈";
+            }
+            else
+            {
+                // Sinon, c'est qu'il était visible, donc on le masque à nouveau avec l'étoile
+                txtboxMdp.PasswordChar = '*';
+
+                // On remet l'œil normal
+                btnAfficherMdp.Text = "👁";
+            }
+        }
     }
+    
 }
