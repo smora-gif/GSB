@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-namespace WinFormsApp1.Ordonnances.DataAccess
 
+namespace WinFormsApp1.Ordonnances.DataAccess
 {
     /// <summary>
     /// Point d'entrée unique pour obtenir une connexion à la base.

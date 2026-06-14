@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormsApp1.Controlleurs;
 using WinFormsApp1.Modele;
-
 namespace WinFormsApp1.Views
 {
     public partial class PatientDetailForm : Form
@@ -19,7 +18,6 @@ namespace WinFormsApp1.Views
         {
             InitializeComponent();
         }
-
         private void btnFermer_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -35,15 +33,12 @@ namespace WinFormsApp1.Views
             this._patient = p;
             _controller = new PatientController();
         }
-
-
         private void ChargerHistorique()
         {
             var historique = _controller.ObtenirHistorique(_patient.Id);
             dgvHistorique.DataSource = historique;
             PersonnaliserColonnesHistorique();
         }
-
         private void ChargerAllergies ()
         {
             var ChargerAllergies =_controller.ObtenirAllergie(_patient.Id);
@@ -63,7 +58,6 @@ namespace WinFormsApp1.Views
             dgvHistorique.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
         }
-
         private void PatientDetailForm_Load(object sender, EventArgs e)
         {
             this.txtName.Text = this._patient.Nom;
@@ -73,7 +67,6 @@ namespace WinFormsApp1.Views
             this.TxtDetailNee.Text = this._patient.DateNaissance.ToString();
             lstAllergies.DataSource = _patient.Allergies;
             ChargerAllergies();
-
         }
     }
 }
