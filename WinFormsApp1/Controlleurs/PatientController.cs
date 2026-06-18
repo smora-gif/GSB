@@ -13,12 +13,10 @@ namespace WinFormsApp1.Controlleurs
         public List<Patient> RechercherParNom(string motCle)
         {
             List<Patient> patients = new List<Patient>();
-            // Correction de la requête : On sélectionne TOUTES les colonnes nécessaires
-            // pour pouvoir utiliser ton constructeur existant à 8 paramètres.
             string sql = "SELECT numPatient, nom, prenom, dateNaissance, numeroSecu, poids, taille, patho, sex " +
                          "FROM PATIENT " +
                          "WHERE nom LIKE @motCle " +
-                         "   OR prenom LIKE @motCle " +
+                         " OR prenom LIKE @motCle " +
                          "ORDER BY nom, prenom";
             using (MySqlConnection cnx = DbConnexion.Ouvrir())
             using (MySqlCommand cmd = new MySqlCommand(sql, cnx))
@@ -29,8 +27,9 @@ namespace WinFormsApp1.Controlleurs
                 {
                     while (lecteur.Read())
                     {
-                        // On gère les valeurs nulles exactement comme dans ta première méthode
+                        // On gère les valeurs nulles exactement comme dans la première méthode
                         bool sexe = false;
+                        //Verifie si la colonne sex n'est pas null en base et renvoie le sex
                         if (!lecteur.IsDBNull(lecteur.GetOrdinal("sex")))
                             sexe = lecteur.GetBoolean("sex");
                         int poids = 0;
@@ -42,7 +41,7 @@ namespace WinFormsApp1.Controlleurs
                         string patho = "";
                         if (!lecteur.IsDBNull(lecteur.GetOrdinal("patho")))
                             patho = lecteur.GetString("patho");
-                        // Utilisation de TON constructeur à 8 paramètres
+                        // Utilisation de constructeur patient qui à 8 parametres
                         Patient p = new Patient(
                             poids,
                             taille,

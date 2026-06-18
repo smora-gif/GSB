@@ -25,7 +25,7 @@ namespace WinFormsApp1
             }
             try
             {
-                // Appel de la couche d'accÃ¨s aux donnÃ©es
+                // Appel de la couche d'accés aux données
                 Medecin medecinConnecte = _medecinController.Connexion(Username, Password);
                 if (medecinConnecte != null)
                 {
@@ -33,7 +33,6 @@ namespace WinFormsApp1
                     // Redirection vers Page_Medecin
                     Form cPageMedecinForm = new Page_Medecin();
                     cPageMedecinForm.Show();
-                    // On cache la page de connexion
                     this.Hide();
                 }
                 else
@@ -57,21 +56,20 @@ namespace WinFormsApp1
         }
         private void btnAfficherMdp_Click(object sender, EventArgs e)
         {
-            // âš ï¸ Remplace 'txtPassword' par le vrai nom de ta TextBox de mot de passe !
-            // Si le mot de passe est actuellement masquÃ© par une Ã©toile
+            //Nous avons configuré par default en passCharacter l'*
             if (txtboxMdp.PasswordChar == '*')
             {
-                // On enlÃ¨ve le masque (la valeur '\0' signifie aucun caractÃ¨re de masquage)
+                //Si oui on dessactive le mascage
                 txtboxMdp.PasswordChar = '\0';
-                // Optionnel : On change l'icÃ´ne du bouton pour montrer qu'on peut refermer l'Å“il
+                //On change l'îcone quand on clique
                 btnAfficherMdp.Text = "ðŸ™ˆ";
             }
             else
             {
-                // Sinon, c'est qu'il Ã©tait visible, donc on le masque Ã  nouveau avec l'Ã©toile
+                // Si condition fausse on remet le mascage pour sécurité
                 txtboxMdp.PasswordChar = '*';
-                // On remet l'Å“il normal
-                btnAfficherMdp.Text = "ðŸ‘";
+                // On remet l'oeil normal
+                btnAfficherMdp.Text = "🙈‘";
             }
         }
     }

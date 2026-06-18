@@ -16,6 +16,7 @@ namespace WinFormsApp1.Controlleurs
                 {
                     while (lecteur.Read())
                     {
+                        //Extrait les données de la base
                         int id = lecteur.GetInt32("codeMedicament");
                         string nom = lecteur.GetString("nom");
                         string dosage = lecteur.GetString("dosage");

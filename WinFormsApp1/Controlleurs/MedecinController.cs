@@ -20,7 +20,7 @@ namespace WinFormsApp1.Controlleurs
                 {
                     if (reader.Read())
                     {
-                        //Extrait les données et evite un crash
+                        //Extrait les données et evite un crash. Si DBNull Renvoie rien car null en base ça casse tout
                         string numRpps = reader["numeroRPPS"] != DBNull.Value ? reader["numeroRPPS"].ToString() : "";
                         string prenom = reader["prenom"] != DBNull.Value ? reader["prenom"].ToString() : "";
                         string mail = reader["email"] != DBNull.Value ? reader["email"].ToString() : "";
@@ -35,6 +35,7 @@ namespace WinFormsApp1.Controlleurs
                         {
                             try
                             {
+                                //Extrait la date de naissance en base et verifie si n'est pas null, il converti to datetime sinon il met la date d'aujourd'hui
                                 dateNais = reader["dateNaissance"] != DBNull.Value ? Convert.ToDateTime(reader["dateNaissance"]) : DateTime.Now;
                             }
                             catch
