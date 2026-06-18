@@ -29,7 +29,7 @@ namespace WinFormsApp1
                 Medecin medecinConnecte = _medecinController.Connexion(Username, Password);
                 if (medecinConnecte != null)
                 {
-                    MessageBox.Show($"Bienvenue Docteur {medecinConnecte.Prenom} !", "Connexion rÃ©ussie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Bienvenue Docteur {medecinConnecte.Prenom} !", "Connexion réussie", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Redirection vers Page_Medecin
                     Form cPageMedecinForm = new Page_Medecin();
                     cPageMedecinForm.Show();
@@ -38,12 +38,12 @@ namespace WinFormsApp1
                 }
                 else
                 {
-                    MessageBox.Show("Identifiants incorrects. Veuillez rÃ©essayer.", "Ã‰chec de connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Identifiants incorrects. Veuillez réessayer.", "échec de connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erreur SystÃ¨me", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erreur Système", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void linkInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
