@@ -28,9 +28,12 @@ namespace WinFormsApp1
         {
             try
             {
+                //Récuperation des données.
                 _medicaments = _medicamentController.ObtenirTousLesMedicaments();
                 ComBoxMedicament.DataSource = null;
+                //Liason des medicament avec combobox
                 ComBoxMedicament.DataSource = _medicaments;
+                //on dit qu'il selectioner aucun element
                 ComBoxMedicament.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -57,6 +60,7 @@ namespace WinFormsApp1
             if (ComBoxMedicament.SelectedItem is Medicament med)
             {
                 string dosage = med.Dosage;
+                //cherche tous les chiffres ou points et n'importe quel caractere restant
                 Match match = Regex.Match(dosage, @"^[\d\.]+(.+)$");
                 if (match.Success)
                 {
